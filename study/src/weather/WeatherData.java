@@ -21,11 +21,12 @@ public class WeatherData implements Subject {
 	}
 	public void notifyObservers() {
 		for(Observer observer:observers) { //for(A:B) = B에서 차례대로 객체를 꺼내 A에 할당(B가 존재할 때 까지)
-			observer.update(temperature, humidity, pressure);
+			//observer.update(temperature, humidity, pressure);
+			observer.update();
 		}
 	}
 	
-	public void measurementsChanged() {
+	public void measurementsChanged() {  //기상 정보 변경
 		/*
 		float temp = getTemperature();
 		float humidity = getHumidity();
@@ -35,9 +36,9 @@ public class WeatherData implements Subject {
 		statisticsDisplay.update(temp, humidity, pressure);
 		forecastDisplay.update(temp, humidity, pressure);
 		*/
-		notifyObservers();
+		notifyObservers(); //옵저버에 알림
 	}
-	public void setMeasurements(float temperature, float humidity, float pressure) {
+	public void setMeasurements(float temperature, float humidity, float pressure) {   //기상 정보 설정
 		this.temperature = temperature;
 		this.humidity = humidity;
 		this.pressure = pressure;
